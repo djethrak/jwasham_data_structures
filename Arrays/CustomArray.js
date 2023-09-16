@@ -170,28 +170,56 @@ class StackedArray{
     }
 }
 
-var stacks = new StackedArray();
+// var stacks = new StackedArray();
 
-stacks.push(1)
-stacks.push(2)
-stacks.pop()
+// stacks.push(1)
+// stacks.push(2)
+// stacks.pop()
 
-stacks.viewTop()
+// stacks.viewTop()
 
 class QueueArray{
-    constructor() {
-        this.queueArray = new MyArray()
+    //It does not make sense to create que with a dynamic array
+    constructor() {  
+        this.read = 0
+        this.write = 0       
+        this.queueArray = [1,2,3,4,5]
     }
 
-    enqueque(){
-
+    enqueque(value){
+        if(this.write == this.queueArray.length-1){
+            this.queueArray[this.write] = value
+            this.read = this.write
+            this.write = 0
+        }
+        else {
+            this.queueArray[this.write] = value
+            this.read = this.write 
+            this.write++
+        }
     }
 
     dequeque(){
-
+        if (this.read == this.queueArray.length-1) {
+            this.queueArray[this.read] = -1
+            this.read = 0
+        }else{
+            this.queueArray[this.read] = -1
+            this.read++
+        }
     }
 
     viewBottom(){
-        
+        console.log(this.queueArray[this.read])
     }
 }
+
+var queque = new QueueArray()
+queque.enqueque(0)
+queque.enqueque(0)
+queque.enqueque(0)
+queque.enqueque(0)
+queque.enqueque(0)
+
+
+console.log(queque)
