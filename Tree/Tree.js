@@ -118,8 +118,9 @@ class QueueLinkedList{
         this.linkedList.append(value)
     }
     dequeque(){
-        console.log(this.linkedList.head.value)
+        var temp =  this.linkedList.head.value
         this.linkedList.remove(0)
+        return temp
     }
     viewBottom(){
         console.log(this.linkedList.head.value)
@@ -184,11 +185,20 @@ class Tree {
             console.log("No TreeNode in tree!")
         }else{
             var loopEnabled = true
-            var currentTreeNode = this.tree
+            const queue = new QueueLinkedList()
+            queue.enqueque(this.tree)
 
-             while (loopEnabled) {
-                
+            while (queue.linkedList.length>0) {
+                const treeNode = queue.dequeque()
+                console.log(treeNode.value)
+                if (treeNode.left != null) {
+                    queue.enqueque(treeNode.left)
+                }
+                if (treeNode.right != null) {
+                    queue.enqueque(treeNode.right)
+                }
             }
+             
             
         }
 
@@ -201,4 +211,6 @@ tree.add(10)
 tree.add(9)
 tree.add(90)
 
-console.log(tree)
+tree.travasalInOrder()
+
+// console.log(tree)
