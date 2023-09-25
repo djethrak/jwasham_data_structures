@@ -240,7 +240,7 @@ class Tree {
                 else{
                     if (tree.parent == null) {
                         if (tree.right != null) {
-                            replaceTheHighestLowestRight(tree.right)
+                            this.replaceTheHighestLowestRight(tree.right)
                             
                         }
                     }
@@ -277,23 +277,47 @@ class Tree {
     replaceTheHighestLowestRight(tree){
         var isNotFound = true
         var currentTreeNode = tree
+        var itNeverWentLeft = true
 
         while(isNotFound){
             if (currentTreeNode.left == null) {
                 if (currentTreeNode.right == null) {
-                    tree.value = currentTreeNode.value
-                    currentTreeNode = null
+                    // this checks if it is a leaf
+                    if (itNeverWentLeft) {
+                        currentTreeNode.parent.right = currentTreeNode.right
+                    }
+                    else{
+                        currentTreeNode.parent.left = currentTreeNode.left
+                    }
+                    currentTreeNode.left = this.tree.left
+                    currentTreeNode.parent = null
+                    delete this.tree
+                    this.tree = currentTreeNode
+                    this.length--
+                    
                 }
                 else{
-                    tree.value = currentTreeNode.value
-                    currentTreeNode = currentTreeNode.right
-                }
-                isNotFound = false
+                    if (itNeverWentLeft) {
+                        currentTreeNode.parent.right = currentTreeNode.right
+                    }
+                    else{
+                        currentTreeNode.parent.left = currentTreeNode.right
+                    }
+                    currentTreeNode.left = this.tree.left
+                    currentTreeNode.parent = null
+                    delete this.tree
+                    this.tree = currentTreeNode
+                    console.log("ma boy"+ this.tree.right)
+                    this.length--                } 
                 
+                isNotFound = false
             }else{
+                itNeverWentLeft = false
                 currentTreeNode = currentTreeNode.left
+                
             }
         }
+
     }
 
 
@@ -336,10 +360,13 @@ tree.add(90)
 
 tree.update(20,90)
 
+tree.add(21)
+tree.add(22)
+
 tree.travasalLevelOrder()
 console.log("\n\n")
 
-// tree.delete(20)
+tree.delete(10)
 // tree.delete(7)
 // tree.delete(5)
 // tree.delete(9)
