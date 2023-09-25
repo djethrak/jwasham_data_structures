@@ -216,6 +216,7 @@ class Tree {
     delete(value){
         var isNotFound = true
         var tree = this.tree
+        // var newHigestLowestNode = null
 
         while(isNotFound){
             if (tree.value == value) {
@@ -234,9 +235,22 @@ class Tree {
                         this.tree = {}
                         this.length = 0
                     }
+                    isNotFound = false
                 }
-                isNotFound = false
-            }else{
+                else{
+                    if (tree.parent == null) {
+                        if (tree.right != null) {
+                            replaceTheHighestLowestRight(tree.right)
+                            
+                        }
+                    }
+                    isNotFound = false
+                }
+
+
+                
+            }
+            else{
                 if (tree.value < value) {
                     if (tree.right != null) {
                         tree = tree.right 
@@ -259,6 +273,23 @@ class Tree {
             }
         }
     }
+
+    replaceTheHighestLowestRight(tree){
+        var isNotFound = true
+        var currentTreeNode = tree
+
+        while(isNotFound){
+            if (currentTreeNode.left == null) {
+                if (currentTreeNode.right == null) {
+                    
+                }
+                
+            }else{
+                currentTreeNode = currentTreeNode.left
+            }
+        }
+    }
+
 
     isLeaf(treeNode){
         return (treeNode.left == null && treeNode.right == null)
