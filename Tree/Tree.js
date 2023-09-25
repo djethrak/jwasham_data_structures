@@ -281,8 +281,14 @@ class Tree {
         while(isNotFound){
             if (currentTreeNode.left == null) {
                 if (currentTreeNode.right == null) {
-                    
+                    tree.value = currentTreeNode.value
+                    currentTreeNode = null
                 }
+                else{
+                    tree.value = currentTreeNode.value
+                    currentTreeNode = currentTreeNode.right
+                }
+                isNotFound = false
                 
             }else{
                 currentTreeNode = currentTreeNode.left
