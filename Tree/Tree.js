@@ -239,9 +239,15 @@ class Tree {
                 }
                 else{
                     if (tree.parent == null) {
+                        // this handles deleting the parent node
                         if (tree.right != null) {
                             this.replaceTheHighestLowestRight(tree.right)
                             
+                        }else if (tree.left != null && tree.right == null) {
+                            this.tree = tree.left
+                            this.tree.parent = null
+                        }else{
+                            tree = {}
                         }
                     }
                     isNotFound = false
@@ -290,13 +296,15 @@ class Tree {
                         currentTreeNode.parent.left = currentTreeNode.left
                     }
                     currentTreeNode.left = this.tree.left
+                    currentTreeNode.right = this.tree.right
                     currentTreeNode.parent = null
-                    delete this.tree
+                    // delete this.tree
                     this.tree = currentTreeNode
                     this.length--
                     
                 }
                 else{
+                    // There is a right node
                     if (itNeverWentLeft) {
                         currentTreeNode.parent.right = currentTreeNode.right
                     }
@@ -304,11 +312,12 @@ class Tree {
                         currentTreeNode.parent.left = currentTreeNode.right
                     }
                     currentTreeNode.left = this.tree.left
+                    currentTreeNode.right = this.tree.right
                     currentTreeNode.parent = null
                     delete this.tree
                     this.tree = currentTreeNode
-                    console.log("ma boy"+ this.tree.right)
-                    this.length--                } 
+                    this.length--                
+                } 
                 
                 isNotFound = false
             }else{
@@ -352,28 +361,28 @@ class Tree {
 
 const tree =  new Tree()
 
-tree.add(10)
-tree.add(7)
-tree.add(9)
-tree.add(5)
-tree.add(90)
-
-tree.update(20,90)
-
-tree.add(21)
+tree.add(20)
+tree.add(30)
+tree.add(31)
+tree.add(32)
 tree.add(22)
+tree.add(21)
+tree.add(25)
+tree.add(26)
+tree.add(23)
+tree.add(24)
+
+tree.add(15)
+tree.add(16)
+tree.add(17)
+tree.add(10)
+tree.add(12)
+tree.add(14)
+tree.add(11)
+tree.add(13)
+
+tree.delete(20)
+tree.delete(21)
+
 
 tree.travasalLevelOrder()
-console.log("\n\n")
-
-tree.delete(10)
-// tree.delete(7)
-// tree.delete(5)
-// tree.delete(9)
-// tree.delete(7)
-// tree.delete(10)
-
-
-tree.travasalLevelOrder()
-
-// console.log(tree)
