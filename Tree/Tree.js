@@ -224,7 +224,6 @@ class Tree {
         var tree = this.tree
         var locationOfChild = ""
         var sideOfTheTree = ""
-        // var newHigestLowestNode = null
 
         while(isNotFound){
             if (tree.value == value) {
@@ -266,8 +265,20 @@ class Tree {
                             this.deleteNonParentRightNode(tree,locationOfChild)
                         }
                         else{
+                            // there is no right node 
                             tree.parent.right = tree.left
                         }
+                        }
+                        else{
+                            // side of tree we are deleting from is left
+                            if (tree.left != null) {
+                                // We are at the right node of parent
+                                this.deleteNonParentRightNode(tree,locationOfChild)
+                            }
+                            else{
+                                // there is no right node 
+                                tree.parent.left = tree.left
+                            }
                         }
                         
                      }
@@ -432,15 +443,15 @@ class Tree {
 const tree =  new Tree()
 
 tree.add(20)
-tree.add(30)
-tree.add(31)
-tree.add(32)
-tree.add(22)
-tree.add(21)
-tree.add(25)
+// tree.add(30)
+// tree.add(31)
+// tree.add(32)
+// tree.add(22)
+// tree.add(21)
+// tree.add(25)
 // tree.add(26)
-tree.add(23)
-tree.add(24)
+// tree.add(23)
+// tree.add(24)
 
 tree.add(15)
 tree.add(16)
