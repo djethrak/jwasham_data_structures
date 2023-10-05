@@ -302,15 +302,14 @@ class Tree {
                 if (itNeverWentLeft) {
 
                     if (locationOfChild == "right") {
-                        tree.parent.right = currentTreeNode
+                        tree.parent.right = currentTreeNode.right
                     }else{
-                        // Not sure if this line is helpful
-                        tree.parent.left = currentTreeNode
+                        // I need to properly evaluate the importance of this line
+                        tree.parent.left = currentTreeNode.left
                     }
-
                 }else{
-                    currentTreeNode.right = tree.right
                     currentTreeNode.parent.left = currentTreeNode.right
+                    currentTreeNode.right = tree.right
                     currentTreeNode.left = tree.left
                     
 
