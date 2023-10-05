@@ -273,7 +273,7 @@ class Tree {
                             // side of tree we are deleting from is left
                             if (tree.left != null) {
                                 // We are at the right node of parent
-                                this.deleteNonParentRightNode(tree,locationOfChild)
+                                this.deleteNonParentLeftNode(tree,locationOfChild)
                             }
                             else{
                                 // there is no right node 
@@ -322,6 +322,45 @@ class Tree {
     }
 
     deleteNonParentRightNode(tree, locationOfChild){
+        var loopEnabled = true
+        var currentTreeNode = tree.right
+        var itNeverWentLeft = true
+
+        while(loopEnabled){
+            if (currentTreeNode.left == null) {
+                if (itNeverWentLeft) {
+                    currentTreeNode.left = tree.left
+
+                    if (locationOfChild == "right") {
+                        console.log("object");
+                        tree.parent.right = currentTreeNode
+                    }else{
+                        // I need to properly evaluate the importance of this line
+                        tree.parent.left = currentTreeNode.left
+                    }
+                }
+                else{
+                    currentTreeNode.parent.left = currentTreeNode.right
+                    currentTreeNode.right = tree.right
+                    currentTreeNode.left = tree.left
+                    
+
+                    if (locationOfChild == "right") {
+                        tree.parent.right = currentTreeNode
+                    }else{
+                        tree.parent.left = currentTreeNode
+                    }
+                    
+                }
+                loopEnabled=false
+              }else{
+                itNeverWentLeft = false
+                currentTreeNode = currentTreeNode.left
+            }
+        }
+    }
+
+    deleteNonParentLeftNode(tree, locationOfChild){
         var loopEnabled = true
         var currentTreeNode = tree.right
         var itNeverWentLeft = true
@@ -462,7 +501,7 @@ tree.add(14)
 tree.add(11)
 tree.add(13)
 
-tree.delete(25)
+tree.delete(10)
 // tree.delete(21)
 
 
