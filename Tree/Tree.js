@@ -1,3 +1,9 @@
+/*
+This code was written by Enarebebe Abraham Ebimawe
+mail: enarebebenatthan@gmail.com
+*/
+
+
 class Node{
     constructor(value){
         this.value = value
@@ -216,6 +222,7 @@ class Tree {
     delete(value){
         var isNotFound = true
         var tree = this.tree
+        var locationOfChild = ""
         // var newHigestLowestNode = null
 
         while(isNotFound){
@@ -249,17 +256,21 @@ class Tree {
                         }else{
                             tree = {}
                         }
-                    }
+                    }else{
+                        // Not leaf or parent
+                        if (tree.right != null && tree.value < tree.right.value) {
+                            // We are at the right node of parent
+                            this.deleteNonParentRightNode(tree,locationOfChild)
+                        }
+                     }
                     isNotFound = false
                 }
-
-
-                
             }
             else{
                 if (tree.value < value) {
                     if (tree.right != null) {
                         tree = tree.right 
+                        locationOfChild = "right"
                     }
                     else{
                         isNotFound = false
@@ -270,6 +281,7 @@ class Tree {
                 else{
                     if (tree.left != null) {
                         tree = tree.left 
+                        locationOfChild = "left"
                     }
                     else{
                         isNotFound = false
@@ -280,7 +292,44 @@ class Tree {
         }
     }
 
+    deleteNonParentRightNode(tree, locationOfChild){
+        var isNotFound = true
+        var currentTreeNode = tree.right
+        var itNeverWentLeft = true
+
+        while(isNotFound){
+            if (currentTreeNode.left == null) {
+                if (itNeverWentLeft) {
+
+                    if (locationOfChild == "right") {
+                        tree.parent.right = currentTreeNode
+                    }else{
+                        // Not sure if this line is helpful
+                        tree.parent.left = currentTreeNode
+                    }
+
+                }else{
+                    currentTreeNode.right = tree.right
+                    currentTreeNode.parent.left = currentTreeNode.right
+                    currentTreeNode.left = tree.left
+                    
+
+                    if (locationOfChild == "right") {
+                        tree.parent.right = currentTreeNode
+                    }else{
+                        tree.parent.left = currentTreeNode
+                    }
+                    
+                }
+              }else{
+                itNeverWentLeft = false
+                currentTreeNode = currentTreeNode.left
+            }
+        }
+    }
+
     replaceTheHighestLowestRight(tree){
+        // This is for the parent node
         var isNotFound = true
         var currentTreeNode = tree
         var itNeverWentLeft = true
@@ -381,8 +430,8 @@ tree.add(14)
 tree.add(11)
 tree.add(13)
 
-tree.delete(20)
-tree.delete(21)
+tree.delete(30)
+// tree.delete(21)
 
 
 tree.travasalLevelOrder()
