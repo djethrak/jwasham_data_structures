@@ -293,21 +293,24 @@ class Tree {
     }
 
     deleteNonParentRightNode(tree, locationOfChild){
-        var isNotFound = true
+        var loopEnabled = true
         var currentTreeNode = tree.right
         var itNeverWentLeft = true
 
-        while(isNotFound){
+        while(loopEnabled){
             if (currentTreeNode.left == null) {
                 if (itNeverWentLeft) {
+                    currentTreeNode.left = tree.left
 
                     if (locationOfChild == "right") {
-                        tree.parent.right = currentTreeNode.right
+                        console.log("object");
+                        tree.parent.right = currentTreeNode
                     }else{
                         // I need to properly evaluate the importance of this line
                         tree.parent.left = currentTreeNode.left
                     }
-                }else{
+                }
+                else{
                     currentTreeNode.parent.left = currentTreeNode.right
                     currentTreeNode.right = tree.right
                     currentTreeNode.left = tree.left
@@ -320,6 +323,7 @@ class Tree {
                     }
                     
                 }
+                loopEnabled=false
               }else{
                 itNeverWentLeft = false
                 currentTreeNode = currentTreeNode.left
@@ -429,7 +433,7 @@ tree.add(14)
 tree.add(11)
 tree.add(13)
 
-tree.delete(30)
+tree.delete(22)
 // tree.delete(21)
 
 
