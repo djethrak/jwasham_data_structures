@@ -223,6 +223,7 @@ class Tree {
         var isNotFound = true
         var tree = this.tree
         var locationOfChild = ""
+        var sideOfTheTree = ""
         // var newHigestLowestNode = null
 
         while(isNotFound){
@@ -258,10 +259,17 @@ class Tree {
                         }
                     }else{
                         // Not leaf or parent
-                        if (tree.right != null && tree.value < tree.right.value) {
+                        if (sideOfTheTree == "right") {
+                            // you are at the right side of the tree relative to the parent
+                        if (tree.right != null) {
                             // We are at the right node of parent
                             this.deleteNonParentRightNode(tree,locationOfChild)
                         }
+                        else{
+                            tree.parent.right = tree.left
+                        }
+                        }
+                        
                      }
                     isNotFound = false
                 }
@@ -271,6 +279,11 @@ class Tree {
                     if (tree.right != null) {
                         tree = tree.right 
                         locationOfChild = "right"
+                        if (tree.parent.parent == null) {
+                            // This navigate the side of the tree the node is located relative to the parent node
+                            sideOfTheTree = "right" 
+                            
+                        }
                     }
                     else{
                         isNotFound = false
@@ -282,6 +295,11 @@ class Tree {
                     if (tree.left != null) {
                         tree = tree.left 
                         locationOfChild = "left"
+
+                        if (tree.parent.parent == null) {
+                            // This navigate the side of the tree the node is located relative to the parent node
+                            sideOfTheTree = "left" 
+                        }
                     }
                     else{
                         isNotFound = false
@@ -420,7 +438,7 @@ tree.add(32)
 tree.add(22)
 tree.add(21)
 tree.add(25)
-tree.add(26)
+// tree.add(26)
 tree.add(23)
 tree.add(24)
 
@@ -433,7 +451,7 @@ tree.add(14)
 tree.add(11)
 tree.add(13)
 
-tree.delete(22)
+tree.delete(25)
 // tree.delete(21)
 
 
