@@ -1,6 +1,7 @@
 /*
 This code was written by Enarebebe Abraham Ebimawe
 mail: enarebebenatthan@gmail.com
+Binary search tree
 */
 
 
@@ -273,11 +274,18 @@ class Tree {
                             // side of tree we are deleting from is left
                             if (tree.left != null) {
                                 // We are at the right node of parent
+                                
                                 this.deleteNonParentLeftNode(tree,locationOfChild)
                             }
                             else{
-                                // there is no right node 
-                                tree.parent.left = tree.left
+                                // there is no left node so delete according to the sides relative to the parent   
+                                if (locationOfChild == "left") {
+                                    tree.parent.left = tree.right
+                                }else{
+                                    tree.parent.right = tree.right
+                                }
+                                
+
                             }
                         }
                         
@@ -371,7 +379,6 @@ class Tree {
                     currentTreeNode.left = tree.left
 
                     if (locationOfChild == "right") {
-                        console.log("object");
                         tree.parent.right = currentTreeNode
                     }else{
                         // I need to properly evaluate the importance of this line
@@ -379,6 +386,7 @@ class Tree {
                     }
                 }
                 else{
+                    console.log("here")
                     currentTreeNode.parent.left = currentTreeNode.right
                     currentTreeNode.right = tree.right
                     currentTreeNode.left = tree.left
@@ -477,20 +485,25 @@ class Tree {
 
     }
 
+    inOrderLevelTravasal(){
+        
+    }
+
+
 }
 
 const tree =  new Tree()
 
 tree.add(20)
-// tree.add(30)
-// tree.add(31)
-// tree.add(32)
-// tree.add(22)
-// tree.add(21)
-// tree.add(25)
-// tree.add(26)
-// tree.add(23)
-// tree.add(24)
+tree.add(30)
+tree.add(31)
+tree.add(32)
+tree.add(22)
+tree.add(21)
+tree.add(25)
+tree.add(26)
+tree.add(23)
+tree.add(24)
 
 tree.add(15)
 tree.add(16)
@@ -499,9 +512,9 @@ tree.add(10)
 tree.add(12)
 tree.add(14)
 tree.add(11)
-tree.add(13)
+tree.add(13)        
 
-tree.delete(10)
+tree.delete(12)
 // tree.delete(21)
 
 
