@@ -4,14 +4,8 @@ mail: enarebebenatthan@gmail.com
 */
 const {QueueLinkedList} = require('../Queue/QueueLinkedList');
 
-class TreeNode{
-    constructor(value) {
-        this.parent = null
-        this.value = value
-        this.left = null
-        this.right = null
-    }
-}
+const {TreeNode} = require('../Tree/TreeNode')
+
 
 class Tree {
     constructor() {
