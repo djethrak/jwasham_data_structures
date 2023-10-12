@@ -1,3 +1,8 @@
+/*
+This code was created by Enarebebe Abraham Ebimawe
+mail: enarebebenatthan@gmail.com
+*/
+
 class TreeNode{
     constructor(value) {
         this.parent = null

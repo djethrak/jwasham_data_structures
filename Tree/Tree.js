@@ -1,5 +1,5 @@
 /*
-This code was written by Enarebebe Abraham Ebimawe
+This code was created by Enarebebe Abraham Ebimawe
 mail: enarebebenatthan@gmail.com
 */
 const {QueueLinkedList} = require('../Queue/QueueLinkedList');
