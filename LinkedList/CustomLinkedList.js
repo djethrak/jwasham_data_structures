@@ -1,3 +1,7 @@
+/*
+This code was written by Enarebebe Abraham Ebimawe
+mail: enarebebenatthan@gmail.com
+*/
 const {Node} = require('../LinkedList/Node')
 
 class LinkedList{

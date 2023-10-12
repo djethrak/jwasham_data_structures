@@ -1,3 +1,8 @@
+/*
+This code was written by Enarebebe Abraham Ebimawe
+mail: enarebebenatthan@gmail.com
+*/
+
 const {LinkedList} = require('../LinkedList/CustomLinkedList')
 
 class QueueLinkedList{ 
