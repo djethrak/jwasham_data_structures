@@ -17,3 +17,7 @@ class StackedLinkedList{
         console.log(this.linkedList.head.value)
     }
 }
+
+module.exports = {
+    StackedLinkedList
+}

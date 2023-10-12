@@ -15,3 +15,7 @@ class QueueLinkedList{
         console.log(this.linkedList.head.value)
     }
 }
+
+module.exports = {
+    QueueLinkedList
+}
