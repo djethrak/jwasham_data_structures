@@ -129,28 +129,9 @@ class MyArray{
     }
 }
 
-// const myArray = new MyArray()
-
-// myArray.add(0)
-// myArray.add(1)
-// myArray.add(2)
-// myArray.add(4)
-// myArray.insert(3,3)
-// myArray.add(5)
-// myArray.add(6)
-// myArray.add(7)
-// myArray.add(8)
-
-// myArray.remove(3)
-// myArray.remove(3)
-// myArray.remove(3)
-// myArray.remove(3)
-// myArray.remove(3)
-// myArray.remove(3)
-
-// myArray.update(3,3)
-
-// console.log(myArray)
+module.exports = {
+    MyArray
+}
 
 class StackedArray{
     constructor() {
