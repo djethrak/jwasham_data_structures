@@ -2,7 +2,10 @@
 This code was created by Enarebebe Abraham Ebimawe
 mail: enarebebenatthan@gmail.com
 */
+const {StacksLinkedList} = require('../Stacks/SatcksLinkedList');
+
 const {QueueLinkedList} = require('../Queue/QueueLinkedList');
+
 
 const {TreeNode} = require('../Tree/TreeNode')
 
@@ -340,6 +343,21 @@ class Tree {
             
         }
 
+    }
+
+    inOrderTraversalStacks(){
+        if (this.length == 0) {
+            console.log("No TreeNode in tree!")
+        }else{
+            // We are using stacks here to implement this function 
+            var isLooping = false
+            var stack = new StacksLinkedList()
+            stack.push(this.tree)
+
+            while (isLooping) {
+            
+            }
+        }
     }
 
 }

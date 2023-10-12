@@ -5,7 +5,7 @@ mail: enarebebenatthan@gmail.com
 
 const {LinkedList} = require('../LinkedList/CustomLinkedList')
 
-class StackedLinkedList{
+class StacksLinkedList{
     constructor() {
         this.linkedList = new LinkedList()
     }
@@ -24,5 +24,5 @@ class StackedLinkedList{
 }
 
 module.exports = {
-    StackedLinkedList
+    StacksLinkedList
 }
