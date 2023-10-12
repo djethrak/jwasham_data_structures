@@ -13,8 +13,9 @@ class QueueLinkedList{
         this.linkedList.append(value)
     }
     dequeque(){
-        console.log(this.linkedList.head.value)
+        var temp =  this.linkedList.head.value
         this.linkedList.remove(0)
+        return temp
     }
     viewBottom(){
         console.log(this.linkedList.head.value)

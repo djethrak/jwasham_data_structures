@@ -1,138 +1,8 @@
 /*
 This code was written by Enarebebe Abraham Ebimawe
 mail: enarebebenatthan@gmail.com
-Binary search tree
 */
-
-
-class Node{
-    constructor(value){
-        this.value = value
-        this.next = null
-    }
-}
-
-class LinkedList{
-    constructor() {
-        this.head = {}
-        this.tail = {}
-        this.length = 0
-    }
-
-    append(value){
-        const newNode = new Node(value)
-        if(this.length== 0){
-            this.head = newNode
-            this.tail = newNode
-        }else{
-            this.tail.next = newNode
-            this.tail = newNode
-        }
-        this.length++
-    }
-
-    prepend(value){
-        const newNode = new Node(value)
-        if(this.length== 0){
-            this.head = newNode
-            this.tail = newNode
-        }else{
-            newNode.next = this.head
-            this.head = newNode
-        }
-        this.length++
-    }
-
-    remove(index){
-        if (this.length == 0) {
-            console.log("No item!")
-        }else if (index >= this.length) {
-            console.log("Invalid index!")
-        }else if (index == 0 && this.length ==1) {
-            this.head = {}
-            this.tail = this.head
-            this.length--
-        }else if (index==0) {
-            this.head = this.head.next
-            this.length--
-        }
-        else{
-                var currentNode = this.head
-                var count = 0
-                while(count < index){
-                    if (count == index-1) {
-                        if (index == this.length -1) {
-                            this.tail = currentNode
-                        }
-                        currentNode.next = currentNode.next.next
-                    }
-                    
-                        currentNode = currentNode.next
-                    
-                    count++
-                }
-                this.length--
-        }
-    }
-    insert(value, index){
-        if (index > this.length) {
-            console.log("Invalid index!")
-        }else{
-            if (index == this.length) {
-                this.append(value)
-            }else if (index==0) {
-                this.prepend(0)
-            }else{
-                const newNode = new Node(value)
-                var currentNode = this.head
-                var count = 0
-                while(count < index){
-                    if (count == index-1) {
-                        newNode.next = currentNode.next
-                        currentNode.next = newNode
-                    }
-                    currentNode = currentNode.next
-                    count++
-                }
-                this.length++
-            }
-        }
-
-    }
-    lookup(){
-        var list = ""
-        var currentNode = this.head
-        var count = 0
-
-        while(count < this.length){
-            if(count!= 0){
-                list = list +"-->"+ currentNode.value
-            }else{
-                list = ""+ currentNode.value
-            }
-            currentNode = currentNode.next
-            count++
-        }
-        console.log(list)
-    }
-}
-
-class QueueLinkedList{ 
-    constructor() {
-        this.linkedList = new LinkedList()
-    }
-    enqueque(value){
-        this.linkedList.append(value)
-    }
-    dequeque(){
-        var temp =  this.linkedList.head.value
-        this.linkedList.remove(0)
-        return temp
-    }
-    viewBottom(){
-        console.log(this.linkedList.head.value)
-    }
-}
+const {QueueLinkedList} = require('../Queue/QueueLinkedList');
 
 class TreeNode{
     constructor(value) {
@@ -274,18 +144,11 @@ class Tree {
                             // side of tree we are deleting from is left
                             if (tree.left != null) {
                                 // We are at the right node of parent
-                                
                                 this.deleteNonParentLeftNode(tree,locationOfChild)
                             }
                             else{
-                                // there is no left node so delete according to the sides relative to the parent   
-                                if (locationOfChild == "left") {
-                                    tree.parent.left = tree.right
-                                }else{
-                                    tree.parent.right = tree.right
-                                }
-                                
-
+                                // there is no right node 
+                                tree.parent.left = tree.left
                             }
                         }
                         
@@ -379,6 +242,7 @@ class Tree {
                     currentTreeNode.left = tree.left
 
                     if (locationOfChild == "right") {
+                        console.log("object");
                         tree.parent.right = currentTreeNode
                     }else{
                         // I need to properly evaluate the importance of this line
@@ -386,7 +250,6 @@ class Tree {
                     }
                 }
                 else{
-                    console.log("here")
                     currentTreeNode.parent.left = currentTreeNode.right
                     currentTreeNode.right = tree.right
                     currentTreeNode.left = tree.left
@@ -485,25 +348,20 @@ class Tree {
 
     }
 
-    inOrderLevelTravasal(){
-        
-    }
-
-
 }
 
 const tree =  new Tree()
 
 tree.add(20)
-tree.add(30)
-tree.add(31)
-tree.add(32)
-tree.add(22)
-tree.add(21)
-tree.add(25)
-tree.add(26)
-tree.add(23)
-tree.add(24)
+// tree.add(30)
+// tree.add(31)
+// tree.add(32)
+// tree.add(22)
+// tree.add(21)
+// tree.add(25)
+// tree.add(26)
+// tree.add(23)
+// tree.add(24)
 
 tree.add(15)
 tree.add(16)
@@ -512,9 +370,9 @@ tree.add(10)
 tree.add(12)
 tree.add(14)
 tree.add(11)
-tree.add(13)        
+tree.add(13)
 
-tree.delete(12)
+tree.delete(10)
 // tree.delete(21)
 
 
