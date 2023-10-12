@@ -180,3 +180,7 @@ class QueueLinkedList{
 // queueLinkedList.dequeque()
 // queueLinkedList.dequeque()
 // queueLinkedList.dequeque()
+
+module.exports={
+    LinkedList
+}
