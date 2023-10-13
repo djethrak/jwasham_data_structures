@@ -87,7 +87,11 @@ class Tree {
         }
     }
 
-    delete(value){
+    delete(value){ 
+        /*
+        There is an error here when deleting 10
+        */
+
         var isNotFound = true
         var tree = this.tree
         var locationOfChild = ""
@@ -95,6 +99,7 @@ class Tree {
 
         while(isNotFound){
             if (tree.value == value) {
+                // console.log(tree);
                 if (this.isLeaf(tree)) {
                     // Let's delete leaf 
                     if (tree.parent != null) {
@@ -113,6 +118,7 @@ class Tree {
                     isNotFound = false
                 }
                 else{
+                    
                     if (tree.parent == null) {
                         // this handles deleting the parent node
                         if (tree.right != null) {
@@ -125,6 +131,7 @@ class Tree {
                             tree = {}
                         }
                     }else{
+                        
                         // Not leaf or parent
                         if (sideOfTheTree == "right") {
                             // you are at the right side of the tree relative to the parent
@@ -133,6 +140,7 @@ class Tree {
                             this.deleteNonParentRightNode(tree,locationOfChild)
                         }
                         else{
+                            
                             // there is no right node 
                             tree.parent.right = tree.left
                         }
@@ -144,6 +152,7 @@ class Tree {
                                 this.deleteNonParentLeftNode(tree,locationOfChild)
                             }
                             else{
+                                console.log("tree");
                                 // there is no right node 
                                 tree.parent.left = tree.left
                             }
@@ -232,7 +241,7 @@ class Tree {
         var loopEnabled = true
         var currentTreeNode = tree.right
         var itNeverWentLeft = true
-
+        
         while(loopEnabled){
             if (currentTreeNode.left == null) {
                 if (itNeverWentLeft) {
@@ -322,16 +331,18 @@ class Tree {
         return (treeNode.left == null && treeNode.right == null)
     }
 
-    travasalLevelOrder(){
+    levelOrderTravasal(){
         if (this.length == 0) {
             console.log("No TreeNode in tree!")
         }else{
             const queue = new QueueLinkedList()
+            var arrayOfInOrderValues = []
             queue.enqueque(this.tree)
 
             while (queue.linkedList.length>0) {
                 const treeNode = queue.dequeque()
-                console.log(treeNode.value)
+                arrayOfInOrderValues.push(treeNode.value)
+                
                 if (treeNode.left != null) {
                     queue.enqueque(treeNode.left)
                 }
@@ -340,7 +351,7 @@ class Tree {
                 }
             }
              
-            
+            console.log("Level Order travasal",arrayOfInOrderValues)
         }
 
     }
@@ -350,13 +361,56 @@ class Tree {
             console.log("No TreeNode in tree!")
         }else{
             // We are using stacks here to implement this function 
-            var isLooping = false
+            var isLoopingLeftSide = true
+            var arrayOfInOrderValues = []
             var stack = new StacksLinkedList()
-            stack.push(this.tree)
+            var currentTreeNode = this.tree
 
-            while (isLooping) {
+            while (isLoopingLeftSide) {
+                //This is to get all the leftside of the  tree into the stack then we can start a chain rection to get all the value
+                if (currentTreeNode != null) {
+                    stack.push(currentTreeNode)
+                    currentTreeNode = currentTreeNode.left
+                }else{
+                    isLoopingLeftSide = false
+                }
             
             }
+
+            /*
+            When we want to pop 
+                - when item is leaf (don't process)
+                - when item has right process
+            By process we add all treeNode till we reach the smallest 
+            */
+
+            while (stack.viewTop() != undefined) {
+                var treeNode = stack.viewTop()
+                if (treeNode.right != null) {
+                    arrayOfInOrderValues.push(treeNode.value)
+                    stack.pop()
+                    this.processTreeNodeIOT(stack, treeNode)
+                }else{
+                    arrayOfInOrderValues.push(treeNode.value)
+                    stack.pop()
+                }
+            }
+            console.log("In Order travasal",arrayOfInOrderValues);
+
+        }
+    }
+
+    processTreeNodeIOT(stack,treeNode){
+        /*
+        IOT means inorder traversal 
+        By processing 
+            - get the lowest number but add all value to stack 
+        */ 
+        var currentTreeNode = treeNode.right
+        stack.push(currentTreeNode)
+        while (currentTreeNode.left != null) {
+            currentTreeNode = currentTreeNode.left
+            stack.push(currentTreeNode)
         }
     }
 
@@ -365,15 +419,15 @@ class Tree {
 const tree =  new Tree()
 
 tree.add(20)
-// tree.add(30)
-// tree.add(31)
-// tree.add(32)
-// tree.add(22)
-// tree.add(21)
-// tree.add(25)
-// tree.add(26)
-// tree.add(23)
-// tree.add(24)
+tree.add(30)
+tree.add(31)
+tree.add(32)
+tree.add(22)
+tree.add(21)
+tree.add(25)
+tree.add(26)
+tree.add(23)
+tree.add(24)
 
 tree.add(15)
 tree.add(16)
@@ -384,8 +438,9 @@ tree.add(14)
 tree.add(11)
 tree.add(13)
 
-tree.delete(10)
+// tree.delete(10)
 // tree.delete(21)
 
 
-tree.travasalLevelOrder()
+tree.inOrderTraversalStacks()
+tree.levelOrderTravasal()

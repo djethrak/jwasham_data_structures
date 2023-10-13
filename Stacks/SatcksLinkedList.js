@@ -12,14 +12,14 @@ class StacksLinkedList{
 
     push(value){
         this.linkedList.prepend(value)
-
     }
     pop(){
-        console.log(this.linkedList.head.value)
+        const temp = this.linkedList.head.value
         this.linkedList.remove(0)
+        return temp
     }
     viewTop(){
-        console.log(this.linkedList.head.value)
+        return this.linkedList.head.value
     }
 }
 
