@@ -331,7 +331,7 @@ class Tree {
         return (treeNode.left == null && treeNode.right == null)
     }
 
-    levelOrderTravasal(){
+    levelOrderTravasalQueques(){
         if (this.length == 0) {
             console.log("No TreeNode in tree!")
         }else{
@@ -385,14 +385,11 @@ class Tree {
             */
 
             while (stack.viewTop() != undefined) {
-                var treeNode = stack.viewTop()
+                var treeNode = stack.pop()
+                arrayOfInOrderValues.push(treeNode.value)
+                
                 if (treeNode.right != null) {
-                    arrayOfInOrderValues.push(treeNode.value)
-                    stack.pop()
                     this.processTreeNodeIOT(stack, treeNode)
-                }else{
-                    arrayOfInOrderValues.push(treeNode.value)
-                    stack.pop()
                 }
             }
             console.log("In Order travasal",arrayOfInOrderValues);
@@ -400,11 +397,15 @@ class Tree {
         }
     }
 
+    preOrderTravasalStacks(){
+        
+    }
+
     processTreeNodeIOT(stack,treeNode){
         /*
         IOT means inorder traversal 
         By processing 
-            - get the lowest number but add all value to stack 
+            - get the lowest number but add all value to stack on your way.
         */ 
         var currentTreeNode = treeNode.right
         stack.push(currentTreeNode)
@@ -443,4 +444,4 @@ tree.add(13)
 
 
 tree.inOrderTraversalStacks()
-tree.levelOrderTravasal()
+tree.levelOrderTravasalQueques()
