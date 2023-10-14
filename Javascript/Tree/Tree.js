@@ -423,14 +423,14 @@ class Tree {
                     stack.push(treeNode.left)
                 }
             
-            }
-
-            
-
-            
+            }    
             console.log(   "Pre Order travasal",arrayOfPreOrderValues);
 
         }
+    }
+
+    postOrderTravasalStacks(){
+         
     }
 
     processTreeNodeIOT(stack,treeNode){
