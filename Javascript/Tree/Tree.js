@@ -359,7 +359,8 @@ class Tree {
     inOrderTraversalStacks(){
         if (this.length == 0) {
             console.log("No TreeNode in tree!")
-        }else{
+        }
+        else{
             // We are using stacks here to implement this function 
             var isLoopingLeftSide = true
             var arrayOfInOrderValues = []
@@ -398,7 +399,38 @@ class Tree {
     }
 
     preOrderTravasalStacks(){
-        
+        if (this.length == 0) {
+            console.log("No TreeNode in tree!")
+        }
+        else{
+            // We are using stacks here to implement this function 
+             var arrayOfPreOrderValues = []
+            var stack = new StacksLinkedList()
+            stack.push(this.tree)
+            /*
+            When we want to pop 
+                - when item is leaf (don't process)
+                - when item has right or left, process
+            By process we add the treeNode right first then left
+            */
+            while (stack.viewTop() != undefined) {
+                var treeNode = stack.pop()
+                arrayOfPreOrderValues.push(treeNode.value)
+                if (treeNode.right != null) {       
+                    stack.push(treeNode.right)
+                }
+                if (treeNode.left != null) {       
+                    stack.push(treeNode.left)
+                }
+            
+            }
+
+            
+
+            
+            console.log(   "Pre Order travasal",arrayOfPreOrderValues);
+
+        }
     }
 
     processTreeNodeIOT(stack,treeNode){
@@ -445,3 +477,4 @@ tree.add(13)
 
 tree.inOrderTraversalStacks()
 tree.levelOrderTravasalQueques()
+tree.preOrderTravasalStacks()
