@@ -409,7 +409,7 @@ class Tree {
             stack.push(this.tree)
             /*
             When we want to pop 
-                - when item is leaf (don't process)
+                - when item is leaf (don't add to stack)
                 - when item has right or left, process
             By process we add the treeNode right first then left
             */
