@@ -430,7 +430,59 @@ class Tree {
     }
 
     postOrderTravasalStacks(){
+        /*
+        WHEN TO POP FROM STACK
+            - if treeNode is Leaf
+            - if lastInsertedTreeNode = treeNode.right
+            - if treeNode does not have a right
+            
+        IF ALL THIS CONDITIONS ARE NOT MET ADD ALL 
+        THE LEFT NODE TO STACKS THEN LOOP UNTIL STACK IS EMPTY
+        */
+         var stacks = new StacksLinkedList()
+         var lastInsertedTreeNode = null
+         var arrayOfPostOrderValues = []
+         stacks.push(this.tree)
+         this.addAllLeftOfTreeNode(this.tree.left,stacks)
+
+         while (stacks.viewTop() != undefined) {
+            var treeNode = stacks.viewTop();
+            if(this.isLeaf(treeNode)){
+                arrayOfPostOrderValues.push(treeNode.value)
+                lastInsertedTreeNode = treeNode
+                stacks.pop()
+            }
+            else{
+                if (treeNode.right == lastInsertedTreeNode) {
+                    arrayOfPostOrderValues.push(treeNode.value)
+                    lastInsertedTreeNode = treeNode
+                    stacks.pop()
+                }
+                else{
+                    if (treeNode.right != null) {
+                        stacks.push(treeNode.right)
+                        this.addAllLeftOfTreeNode(treeNode.right.left,stacks)
+                    }else{
+                        arrayOfPostOrderValues.push(treeNode.value)
+                        lastInsertedTreeNode = treeNode
+                        stacks.pop()
+                    }
+                }
+            }
+         }
+         console.log(   "Post Order travasal",arrayOfPostOrderValues);
+
          
+    }
+
+    addAllLeftOfTreeNode(tree, stacks){
+        /*
+        This add all left node to stacks
+        */
+        while (tree != null) {
+            stacks.push(tree)
+            tree = tree.left
+        }
     }
 
     processTreeNodeIOT(stack,treeNode){
@@ -478,3 +530,4 @@ tree.add(13)
 tree.inOrderTraversalStacks()
 tree.levelOrderTravasalQueques()
 tree.preOrderTravasalStacks()
+tree.postOrderTravasalStacks()
