@@ -146,15 +146,15 @@ class Tree {
                         }
                         }
                         else{
+                            
                             // side of tree we are deleting from is left
                             if (tree.left != null) {
                                 // We are at the right node of parent
                                 this.deleteNonParentLeftNode(tree,locationOfChild)
                             }
                             else{
-                                console.log("tree");
-                                // there is no right node 
-                                tree.parent.left = tree.left
+                                // there is right node 
+                                tree.parent.left = tree.right
                             }
                         }
                         
@@ -435,7 +435,7 @@ class Tree {
             - if treeNode is Leaf
             - if lastInsertedTreeNode = treeNode.right
             - if treeNode does not have a right
-            
+
         IF ALL THIS CONDITIONS ARE NOT MET ADD ALL 
         THE LEFT NODE TO STACKS THEN LOOP UNTIL STACK IS EMPTY
         */
@@ -528,6 +528,6 @@ tree.add(13)
 
 
 tree.inOrderTraversalStacks()
-tree.levelOrderTravasalQueques()
-tree.preOrderTravasalStacks()
-tree.postOrderTravasalStacks()
+// tree.levelOrderTravasalQueques()
+// tree.preOrderTravasalStacks()
+// tree.postOrderTravasalStacks()
