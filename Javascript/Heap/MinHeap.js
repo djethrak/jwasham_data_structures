@@ -9,4 +9,16 @@ class MinHeap{
     }
 
     insert(value){}
+
+    remove(index){}
+
+    getMin(){}
+
+    heapify(array){}
+
+    heapSort(){}
+}
+
+module.exports = {
+    MinHeap
 }
