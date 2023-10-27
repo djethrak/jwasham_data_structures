@@ -40,7 +40,10 @@ class MinHeap{
         }
     }
 
-    heapify(array){}
+    heapify(array){
+        
+
+    }
 
     heapSort(){}
 
@@ -76,16 +79,33 @@ class MinHeap{
         }
     }
     heapifyNodeAtIndex(index){
+        /*
+        Move initial index to a spot that is min heap true 
+
+        check children if they are  min heap 
+
+        repeat this process untill the children of heap is true
+        */
+       while (!this.isMinHeap(index)) {
         var left = this.array[(index*2)+1]
         var right = this.array[(index*2)]
         var parent =this.array[index]
 
         if (right != undefined && right  < parent) {
             this.swapNode((index*2),index)
+            // check if left or right isMinHeap
+            if (condition) {
+                
+            }
+        
         }
         if (left != undefined && left  < parent) {
             this.swapNode((index*2)+1,index)
         }
+
+        
+
+       }
     }
     swapNode(index1, index2){
         var temp = this.array[index1]
@@ -100,7 +120,7 @@ minHeap.insert(2)
 minHeap.insert(3)
 minHeap.insert(1)
 
-console.log(minHeap.array);
+console.log(minHeap.array)
 
 
 
