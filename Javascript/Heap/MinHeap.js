@@ -5,15 +5,14 @@ mail: enarebebenatthan@gmail.com
 
 class MinHeap{
     constructor() {
-        this.array = [0]
+        this.array = []
     }
 
     insert(value){
-        if (this.array.length == 1) {
+        if (this.array.length == 0) {
             this.array.push(value)
         }else{
             this.array.push(value)
-            // console.log(this.getTheLastParentIndex(),this.isMinHeap(this.getTheLastParentIndex()));
             if (!this.isMinHeap(this.getTheLastParentIndex())) {
                 this.heapifyNodeAtIndex(this.array.length-1)
             }
@@ -39,28 +38,31 @@ class MinHeap{
 
     // private classes
 
+    getTheLastParentIndex(){
+        if (this.array.length <= 3) {
+            return 0
+        } else{
+            return Math.floor(((this.array.length-2)/2))
+        }
+    }
     getFirstLeafIndex(){
         return Math.floor(((this.array.length-1)/2)) + 1
     }
-
-     getTheLastParentIndex(){
-        return Math.floor(((this.array.length-1)/2))
-    }
     getParentOfIndex(index){
-        return Math.floor(((index)/2))
+        return Math.floor(((index-1)/2))
     }
     isNodeFull(index){
-        return this.array[(index*2)+1] != undefined
+        return this.array[(index*2)+2] != undefined
     }
     isLeaf(index){
-        return this.array[(index*2)] == undefined
+        return this.array[(index*2)+1] == undefined
     }
     isMinHeap(index){
         if (this.isLeaf(index)) {
             return true
         }else{
-            var left = this.array[(index*2)]
-            var right = this.array[(index*2)+1]
+            var left = this.array[(index*2)+1]
+            var right = this.array[(index*2)+2]
             var parent =this.array[index]
             
             if (right != undefined && right  < parent) {
@@ -82,23 +84,21 @@ class MinHeap{
         
        var parentIndex = this.getParentOfIndex(myCurrentIndex)
 
-
        while (!this.isMinHeap(parentIndex)) {
-        var left = this.array[(parentIndex*2)]
-        var right = this.array[(parentIndex*2)+1]
+        var left = this.array[(parentIndex*2)+1]
+        var right = this.array[(parentIndex*2)+2]
         var parent =this.array[parentIndex]
 
 
         if (right != undefined && right  < parent) {
-            this.swapNode((parentIndex*2)+1,parentIndex)
+            this.swapNode((parentIndex*2)+2,parentIndex)
         }
 
         if (left != undefined && left  < parent) {
-            this.swapNode((parentIndex*2),parentIndex)
+            this.swapNode((parentIndex*2)+1,parentIndex)
         }
 
         
-
         if (this.array[this.getParentOfIndex(parentIndex)] != undefined) {
             parentIndex = this.getParentOfIndex(parentIndex)
         }
