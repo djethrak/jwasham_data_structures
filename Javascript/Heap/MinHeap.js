@@ -13,6 +13,7 @@ class MinHeap{
             this.array.push(value)
         }else{
             this.array.push(value)
+            // console.log(this.getTheLastParentIndex(),this.isMinHeap(this.getTheLastParentIndex()));
             if (!this.isMinHeap(this.getTheLastParentIndex())) {
                 this.heapifyNodeAtIndex(this.array.length-1)
             }
@@ -61,9 +62,11 @@ class MinHeap{
             var left = this.array[(index*2)]
             var right = this.array[(index*2)+1]
             var parent =this.array[index]
-            if (right != undefined && right  > parent) {
+            
+            if (right != undefined && right  < parent) {
                 return false
-            } else if (left != undefined && left  > parent) {
+            } else if (left != undefined && left  < parent) {
+                
                 return false
             } else{
                 return true
@@ -79,31 +82,24 @@ class MinHeap{
         
        var parentIndex = this.getParentOfIndex(myCurrentIndex)
 
-       
 
        while (!this.isMinHeap(parentIndex)) {
-        console.log(parentIndex,this.isMinHeap(parentIndex));
         var left = this.array[(parentIndex*2)]
         var right = this.array[(parentIndex*2)+1]
         var parent =this.array[parentIndex]
-        
 
-        if (right != undefined && right  > parent) {
-            this.swapNode((parentIndex*2),parentIndex)
-        }
 
-        if (left != undefined && left  > parent) {
+        if (right != undefined && right  < parent) {
             this.swapNode((parentIndex*2)+1,parentIndex)
         }
 
-        // check if parent of index is minheap
-        parentIndex = this.getParentOfIndex(myCurrentIndex)
+        if (left != undefined && left  < parent) {
+            this.swapNode((parentIndex*2),parentIndex)
+        }
+
         
-        
-        
-        if (parentIndex !=0 && !this.isMinHeap(parentIndex)) {
-            // console.log(parentIndex);
-            // set index to parent
+
+        if (this.array[this.getParentOfIndex(parentIndex)] != undefined) {
             parentIndex = this.getParentOfIndex(parentIndex)
         }
 
@@ -118,10 +114,13 @@ class MinHeap{
 
 const minHeap = new MinHeap()
 
-minHeap.insert(2)
 minHeap.insert(3)
+minHeap.insert(2)
 minHeap.insert(1)
-// minHeap.insert(0)
+minHeap.insert(0)
+
+minHeap.insert(4)
+minHeap.insert(5)
 
 console.log(minHeap.array)
 
