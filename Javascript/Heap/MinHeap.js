@@ -29,12 +29,31 @@ class MinHeap{
         }
     }
 
-    heapify(array){
+    heapSort(array){
+        /*
+        this require extra space because we have to create this.array and write into it
         
+        the big o of this algorithm is Nlogn
+        */ 
 
+        this.array = array
+        for (let index = array.length; 0 <= index; index--) {
+            this.heapifyNodeAtIndex(index)
+        }
     }
 
-    heapSort(){}
+    heapSortInsert(array){
+        /*
+        this require extra space because we have to create this.array and write into it
+        
+        the big o of this algorithm is Nlogn
+        */ 
+        for (let index = 0; index < array.length; index++) {
+            this.insert(array[index])
+            
+        }
+
+    }
 
     // private classes
 
@@ -114,13 +133,15 @@ class MinHeap{
 
 const minHeap = new MinHeap()
 
-minHeap.insert(3)
-minHeap.insert(2)
-minHeap.insert(1)
-minHeap.insert(0)
+// minHeap.insert(3)
+// minHeap.insert(2)
+// minHeap.insert(1)
+// minHeap.insert(0)
 
-minHeap.insert(4)
-minHeap.insert(5)
+// minHeap.insert(4)
+// minHeap.insert(5)
+
+minHeap.heapSortInsert([1,4,5,2,3])
 
 console.log(minHeap.array)
 
