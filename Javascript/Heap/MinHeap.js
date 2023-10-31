@@ -127,7 +127,6 @@ class MinHeap{
             parentIndex = 0
        }
 
-       console.log(parentIndex);
 
        while (!this.isMinHeap(parentIndex)) {
         var left = this.array[(parentIndex*2)+1]

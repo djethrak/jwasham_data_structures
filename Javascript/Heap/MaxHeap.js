@@ -127,7 +127,6 @@ class MaxHeap{
             parentIndex = 0
        }
 
-       console.log(parentIndex);
 
        while (!this.isMaxHeap(parentIndex)) {
         var left = this.array[(parentIndex*2)+1]
