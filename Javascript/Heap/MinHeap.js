@@ -49,7 +49,7 @@ class MinHeap{
         }
     }
 
-    heapSort(array){
+    heapifyArray(array){
         /*
         this require extra space because we have to create this.array and write into it
         
@@ -62,7 +62,7 @@ class MinHeap{
         }
     }
 
-    heapSortInsert(array){
+    heapArrayInsert(array){
         /*
         this require extra space because we have to create this.array and write into it
         
