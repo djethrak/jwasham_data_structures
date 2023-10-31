@@ -19,13 +19,33 @@ class MinHeap{
         }
     }
 
-    remove(index){}
+    removeAt(index){
+
+        if (index == this.array.length-1) {
+            this.array.pop()
+        }else{
+        // replace last item with the item you want to remove
+
+        this.array[index] = this.array[this.array.length-1]
+
+        // remove the last item
+        this.array.pop()
+
+        // heapify at index
+        
+        if (!this.isMinHeap(index)) {
+            
+            this.heapifyNodeAtIndex(index)
+        }
+
+        }
+    }
 
     getMin(){
         if (this.array.length == 0) {
             console.log("No value");
         }else{
-            return this.array[(this.array.length-1)]
+            return this.array[0]
         }
     }
 
@@ -102,6 +122,11 @@ class MinHeap{
         */
         
        var parentIndex = this.getParentOfIndex(myCurrentIndex)
+       if (myCurrentIndex<1) {
+            parentIndex = 0
+       }
+
+       console.log(parentIndex);
 
        while (!this.isMinHeap(parentIndex)) {
         var left = this.array[(parentIndex*2)+1]
@@ -142,6 +167,10 @@ const minHeap = new MinHeap()
 // minHeap.insert(5)
 
 minHeap.heapSortInsert([1,4,5,2,3])
+
+console.log(minHeap.array)
+
+minHeap.removeAt(0)
 
 console.log(minHeap.array)
 
