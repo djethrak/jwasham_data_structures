@@ -18,7 +18,7 @@ class MinHeap{
             }
         }
     }
-    
+
 
     removeAt(index){
 
@@ -167,7 +167,7 @@ const minHeap = new MinHeap()
 // minHeap.insert(4)
 // minHeap.insert(5)
 
-minHeap.heapSortInsert([1,4,5,2,3])
+minHeap.heapArrayInsert([1,4,5,2,3])
 
 console.log(minHeap.array)
 

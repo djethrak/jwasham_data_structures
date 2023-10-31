@@ -13,7 +13,7 @@ class MaxHeap{
             this.array.push(value)
         }else{
             this.array.push(value)
-            if (!this.isMinHeap(this.getTheLastParentIndex())) {
+            if (!this.isMaxHeap(this.getTheLastParentIndex())) {
                 this.heapifyNodeAtIndex(this.array.length-1)
             }
         }
@@ -34,7 +34,7 @@ class MaxHeap{
 
         // heapify at index
         
-        if (!this.isMinHeap(index)) {
+        if (!this.isMaxHeap(index)) {
             
             this.heapifyNodeAtIndex(index)
         }
@@ -97,7 +97,7 @@ class MaxHeap{
     isLeaf(index){
         return this.array[(index*2)+1] == undefined
     }
-    isMinHeap(index){
+    isMaxHeap(index){
         if (this.isLeaf(index)) {
             return true
         }else{
@@ -105,9 +105,9 @@ class MaxHeap{
             var right = this.array[(index*2)+2]
             var parent =this.array[index]
             
-            if (right != undefined && right  < parent) {
+            if (right != undefined && right  > parent) {
                 return false
-            } else if (left != undefined && left  < parent) {
+            } else if (left != undefined && left  > parent) {
                 
                 return false
             } else{
@@ -129,17 +129,17 @@ class MaxHeap{
 
        console.log(parentIndex);
 
-       while (!this.isMinHeap(parentIndex)) {
+       while (!this.isMaxHeap(parentIndex)) {
         var left = this.array[(parentIndex*2)+1]
         var right = this.array[(parentIndex*2)+2]
         var parent =this.array[parentIndex]
 
 
-        if (right != undefined && right  < parent) {
+        if (right != undefined && right  > parent) {
             this.swapNode((parentIndex*2)+2,parentIndex)
         }
 
-        if (left != undefined && left  < parent) {
+        if (left != undefined && left  > parent) {
             this.swapNode((parentIndex*2)+1,parentIndex)
         }
 
@@ -156,6 +156,17 @@ class MaxHeap{
         this.array[index2] = temp
     }
 }
+
+const maxHeap = new MaxHeap()
+
+maxHeap.heapArrayInsert([1,4,5,2,3])
+
+console.log(maxHeap.array)
+
+maxHeap.removeAt(0)
+
+console.log(maxHeap.array)
+
 module.exports = {
     MaxHeap
 }
