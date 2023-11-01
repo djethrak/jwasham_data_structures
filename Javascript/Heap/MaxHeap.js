@@ -50,6 +50,22 @@ class MaxHeap{
         }
     }
 
+    heapSortAccendingOrder(){
+        /*
+        We are not creating extra space - space complexity 0(1)
+        Time complexity O(nlogn)
+        */ 
+       var restrictedIndex = this.array.length
+
+       while (restrictedIndex > 0) {
+        restrictedIndex--
+        this.swapNode(0,restrictedIndex)
+        this.heapifyRestrictedNodeAtIndex(0,restrictedIndex)
+        
+       }
+
+    }
+
     heapifyArray(array){
         /*
         this require extra space because we have to create this.array and write into it
@@ -115,6 +131,24 @@ class MaxHeap{
             }
         }
     }
+    isMaxHeapRestrictedIndex(index,restrictedIndex){
+        if (this.isLeaf(index)) {
+            return true
+        }else{
+            var left = this.array[(index*2)+1]
+            var right = this.array[(index*2)+2]
+            var parent =this.array[index]
+            
+            if (right != undefined && right  > parent && (index*2)+2 < restrictedIndex ) {
+                return false
+            } else if (left != undefined && left  > parent && (index*2)+1 < restrictedIndex) {
+                
+                return false
+            } else{
+                return true
+            }
+        }
+    }
     heapifyNodeAtIndex(myCurrentIndex){
         /*
         check if parent is minheap
@@ -149,6 +183,40 @@ class MaxHeap{
 
        }
     }
+    heapifyRestrictedNodeAtIndex(myCurrentIndex, restrictedIndex){
+        /*
+        check if parent is minheap
+
+        if not move it up
+        */
+        
+       var parentIndex = this.getParentOfIndex(myCurrentIndex)
+       if (myCurrentIndex<1) {
+            parentIndex = 0
+       }
+
+
+       while (!this.isMaxHeapRestrictedIndex(parentIndex, restrictedIndex)) {
+        var left = this.array[(parentIndex*2)+1]
+        var right = this.array[(parentIndex*2)+2]
+        var parent =this.array[parentIndex]
+
+
+        if (right != undefined && right  > parent && (parentIndex*2)+2 < restrictedIndex) {
+            this.swapNode((parentIndex*2)+2,parentIndex)
+        }
+
+        if (left != undefined && left  > parent && (parentIndex*2)+1 < restrictedIndex) {
+            this.swapNode((parentIndex*2)+1,parentIndex)
+        }
+
+        
+        if (this.array[this.getParentOfIndex(parentIndex)] != undefined) {
+            parentIndex = this.getParentOfIndex(parentIndex)
+        }
+
+       }
+    }
     swapNode(index1, index2){
         var temp = this.array[index1]
         this.array[index1] = this.array[index2]
@@ -158,11 +226,14 @@ class MaxHeap{
 
 const maxHeap = new MaxHeap()
 
-maxHeap.heapArrayInsert([1,4,5,2,3])
+maxHeap.heapArrayInsert([15,7,4,3,4,1,2])
+
+// maxHeap.heapArrayInsert([1,4,5,2,3])
 
 console.log(maxHeap.array)
 
-maxHeap.removeAt(0)
+// maxHeap.removeAt(0)
+maxHeap.heapSortAccendingOrder()
 
 console.log(maxHeap.array)
 

@@ -22,7 +22,7 @@ class MinHeap{
     heapSortAccendingOrder(){
         /*
         We are not creating extra space - space complexity 0(1)
-        Time complexity O(n)
+        Time complexity O(nlogn)
         */ 
 
     }
