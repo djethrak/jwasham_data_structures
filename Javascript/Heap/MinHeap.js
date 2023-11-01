@@ -19,11 +19,19 @@ class MinHeap{
         }
     }
 
-    heapSortAccendingOrder(){
+    heapSortDescendingOrder(){
         /*
         We are not creating extra space - space complexity 0(1)
         Time complexity O(nlogn)
         */ 
+        var restrictedIndex = this.array.length
+
+        while (restrictedIndex > 0) {
+         restrictedIndex--
+         this.swapNode(0,restrictedIndex)
+         this.heapifyRestrictedNodeAtIndex(0,restrictedIndex)
+         
+        }
 
     }
 

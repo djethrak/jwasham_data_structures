@@ -50,7 +50,7 @@ class MaxHeap{
         }
     }
 
-    heapSortAccendingOrder(){
+    heapSortAscendingOrder(){
         /*
         We are not creating extra space - space complexity 0(1)
         Time complexity O(nlogn)
@@ -233,7 +233,7 @@ maxHeap.heapArrayInsert([15,7,4,3,4,1,2])
 console.log(maxHeap.array)
 
 // maxHeap.removeAt(0)
-maxHeap.heapSortAccendingOrder()
+maxHeap.heapSortAscendingOrder()
 
 console.log(maxHeap.array)
 
