@@ -26,7 +26,6 @@ class MergeSortNonRecurssive{
         var arrayIndex = this.auxArray.length - 1
 
         while (this.auxArray.length > 1) {
-            console.log("obk");
 
             if (arrayIndex <= 1 && this.auxArray.length ==2 ) {
                 // that means there is only 2 items in aux Length merge 0 and 1
@@ -39,35 +38,50 @@ class MergeSortNonRecurssive{
                 this.merge(arrayIndex-1,arrayIndex) 
                 arrayIndex = arrayIndex - 2
             }
+
+            console.log("this.auxArray.length");
         }
 
         
     }
     merge(array1Index,array2Index){
-        const array1 = this.auxArray[array1Index]
-        const array2 = this.auxArray[array2Index]
+        var array1 = this.auxArray[array1Index]
+        var array2 = this.auxArray[array2Index]
+        this.auxArray[array1Index] = []
+
+        console.log(array1,array2);
 
         //First array is always greater or equal in length to array2 i.e time complexity O(array1.length)
 
-        for (let i = 0; i < array1.length; i++) {
+        var rtIndex = 0
+        var ltIndex = 0
 
-            if (array1[i] > array2[i] && array2[i] != undefined) {
-                this.auxArray[array1Index].push(array2[i])
+        while (this.auxArray[array1Index].length != (array1.length+array2.length)) {
+
+            if (array1[rtIndex] > array2[ltIndex] && array2[ltIndex] != undefined) {
+                this.auxArray[array1Index].push(array2[ltIndex])
+                ltIndex++
             }
-            else if (array1[i] <= array2[i] && array2[i] != undefined) {
+            else if (array1[rtIndex] <= array2[ltIndex] && array2[ltIndex] != undefined) {
                 // the equal to sign ensures stability
-                 this.auxArray[array1Index].push(array1[i])
+                 this.auxArray[array1Index].push(array1[rtIndex])
+                 rtIndex++
             }
-            else if(array2[i]==undefined){
-                this.auxArray[array1Index].push(array1[i])
+            else if(array2[ltIndex]==undefined){
+                this.auxArray[array1Index].push(array1[rtIndex])
+                rtIndex++
+            }else  {
+                this.auxArray[array1Index].push(array2[ltIndex])
+                ltIndex++
             }
-
         }
-        this.auxArray.pop()
         
+        console.log(this.auxArray[array1Index]);
+        
+        this.auxArray.pop()
     }
 }
 
-const mergSort = new MergeSortNonRecurssive([3,4,8,6,1,1])
+const mergSort = new MergeSortNonRecurssive([3,4,8,6,1,1,10])
 
 mergSort.sort()
