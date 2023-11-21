@@ -41,3 +41,7 @@ class BasicCountingSort{
 
 const basicCountingSort = new BasicCountingSort([9,0,2,0,4])
 basicCountingSort.sort()
+
+module.exports = {
+    BasicCountingSort
+}

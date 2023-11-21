@@ -45,3 +45,7 @@ class QuickSortNonRecursive {
 const quickSort = new QuickSortNonRecursive([5,86,69,73,11,17,1,74,34,3])
 
 quickSort.positionPivot(5)
+
+module.exports = {
+    QuickSortNonRecursive
+}

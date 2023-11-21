@@ -85,3 +85,7 @@ class MergeSortNonRecurssive{
 const mergSort = new MergeSortNonRecurssive([3,4,8,6,1,1,10])
 
 mergSort.sort()
+
+module.exports = {
+    MergeSortNonRecurssive
+}

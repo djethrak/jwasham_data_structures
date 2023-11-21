@@ -43,3 +43,7 @@ class Dijkstra3pointer{
 // const dijkstra = new Dijkstra3pointer([5,86,69,73,11,17,1,74,34,3])
 const dijkstra = new Dijkstra3pointer([1,4,8,6,1,1,10])
 dijkstra.make()
+
+module.exports = {
+    Dijkstra3pointer
+}
