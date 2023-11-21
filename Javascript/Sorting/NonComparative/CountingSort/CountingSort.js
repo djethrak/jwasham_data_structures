@@ -1,10 +1,18 @@
 class CountingSort{
-
+/*
+    It is non comparerabe because we are not comparing any value 
+    */
     constructor(array) {
         this.array = array
     }
 
     sort(){
+         /*
+        -This run in O(q+n) but it has it foors
+            -The key can not loose it value 
+        -It requires extra space {keyMap} O(n)
+        */
+
         let keyMap = {}
 
         // put each int item into hash which will sort each as key
@@ -59,3 +67,7 @@ class CountingSort{
 
 const countingSort = new CountingSort([9,0,2,0,4])
 countingSort.sort()
+
+module.exports = {
+    CountingSort
+}
