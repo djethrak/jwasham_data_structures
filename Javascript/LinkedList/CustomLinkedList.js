@@ -5,11 +5,15 @@ mail: enarebebenatthan@gmail.com
 const {Node} = require('../LinkedList/Node')
 
 class LinkedList{
+    //Work on merging linked list together
+
     constructor() {
         this.head = {}
         this.tail = {}
         this.length = 0
     }
+
+   
 
     append(value){
         const newNode = new Node(value)
@@ -106,6 +110,19 @@ class LinkedList{
             count++
         }
         console.log(list)
+    }
+
+    lookupArray(){
+        var list = []
+        var currentNode = this.head
+        var count = 0
+
+        while(count < this.length){
+            list.push(currentNode.value)
+            currentNode = currentNode.next
+            count++
+        }
+        return list
     }
 }
 
