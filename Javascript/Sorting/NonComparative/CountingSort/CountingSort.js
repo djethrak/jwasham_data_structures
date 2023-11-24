@@ -1,3 +1,7 @@
+/*
+This code was created by Enarebebe Abraham Ebimawe
+mail: enarebebenatthan@gmail.com
+*/
 class CountingSort{
 /*
     It is non comparerabe because we are not comparing any value 

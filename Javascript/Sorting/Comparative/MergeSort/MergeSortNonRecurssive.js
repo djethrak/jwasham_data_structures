@@ -1,3 +1,7 @@
+/*
+This code was created by Enarebebe Abraham Ebimawe
+mail: enarebebenatthan@gmail.com
+*/
 class MergeSortNonRecurssive{
     constructor(array) {
         this.array = array
