@@ -1,3 +1,7 @@
+/*
+This code was created by Enarebebe Abraham Ebimawe
+mail: enarebebenatthan@gmail.com
+*/
 class LeastSignificantDigit{
     /**
      * Each word in the input array must be of equal length e.g @param {["add","cab","fad"]} 
@@ -25,25 +29,23 @@ class LeastSignificantDigit{
         }
 
         /**
-         * @param {index} is to track the loop key index : helps to know if it is at index 0
          * The time complexity for this O(h)
          * The space complexity for this is O(1)
          *  */ 
-        var index = 0
         var lastTotalCount = 0
         for (const key in hash) {
+            
             // Save the value to the current key
-            var currentKeyValue = hash[key]
-            if (index == 0) {
-                // assign the first key to 0
-                hash[key]= 0
-            }else{
-                // Save the last total count of the value to current key
-                hash[key]= lastTotalCount
-            }
+            var tempCurrentKeyValue = hash[key]
+
+            /**
+             * Assigns the first key to 0
+             * Saves the last total count of the value to current key
+             */
+            hash[key]= lastTotalCount
+
             // Add current key value to the last total count 
-            lastTotalCount = lastTotalCount + currentKeyValue
-            index++
+            lastTotalCount = lastTotalCount + tempCurrentKeyValue
         }
         /**
          * Total time complexity is O(n+h)
